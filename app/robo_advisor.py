@@ -3,13 +3,17 @@ import json
 import os
 import requests
 
-load_dotenv() # loads environment variables set in a ".env" file, including the value of the ALPHAVANTAGE_API_KEY variable
-
-# see: https://www.alphavantage.co/support/#api-key
+#Retrieve the API Key from the dotenv file
+load_dotenv()
 api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
-print("API KEY: " + api_key)
 
-symbol = "NFLX" # TODO: capture user input, like... input("Please specify a stock symbol: ")
+#Determine stock to track
+print("")
+print("Welcome to the Robo Advisor Application")
+print("----------------------------------------------------")
+print("")
+symbol = input("Which stock would you like to retrieve quotes for? ")
+
 
 # see: https://www.alphavantage.co/documentation/#daily (or a different endpoint, as desired)
 # TODO: assemble the request url to get daily data for the given stock symbol...
