@@ -5,6 +5,14 @@ import requests
 import pandas
 import datetime
 
+
+#Month Converter // from previous project
+def month_converter(monthCode):
+	full_month = {'01':'January','02':'February','03':'March','04':'April',
+	'05':'May','06':'June','07':'July','08':'August','09':'September','10':'October',
+	'11':'November', '12':'December'}
+	return full_month[monthCode]
+
 #Retrieve the API Key from the dotenv file
 load_dotenv()
 api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
@@ -73,10 +81,10 @@ print("----------------------------------------------------")
 print("Stock Symbol: " + symbol )
 print("Analysis run at: " + str(fullDate))
 print("Latest Date of Available Data: " + latestDate)
-print("The Daily High price on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily High'])))
-print("The Daily Low  price on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily Low'])))
-print("The opening  price   on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Opening Price'])))
-print("The closing  price   on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Closing Price'])))
+print("The most recent Daily High price was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily High'])))
+print("The most recent Daily Low  price was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily Low'])))
+print("The most recent Opening  Price   was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Opening Price'])))
+print("The most recent Closing  Price   was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Closing Price'])))
 
 #Recomendation
 
