@@ -20,7 +20,7 @@ api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
 #Determine stock to track
 print("")
 print("Welcome to the Robo Advisor Application")
-print("----------------------------------------------------")
+print("---------------------------------------------------------")
 print("")
 while True:
 	symbol = input("Which stock would you like to retrieve quotes for? ")
@@ -88,17 +88,25 @@ latestYear = latestDate[0:4]
 
 #Print Information
 print("")
-print("----------------------------------------------------")
+print("---------------------------------------------------------")
 print("Stock Symbol: " + symbol )
 print("Analysis run on: " + monthFull + " " + day + ", " + year)
 print("Latest Date of Available Data: " + latestMonth + " " + latestDay + ", " + latestYear )
-print("The most recent Daily High price was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily High'])))
-print("The most recent Daily Low  price was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily Low'])))
+print("---------------------------------------------------------")
+print("The most recent Recent High price was:  " + "${0:,.2f}".format(max(dataFrame['Daily High'].astype(float))))
+print("The most recent Recent Low  price was:  " + "${0:,.2f}".format(min(dataFrame['Daily Low'].astype(float))))
 print("The most recent Opening  Price   was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Opening Price'])))
 print("The most recent Closing  Price   was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Closing Price'])))
-
+print("---------------------------------------------------------")
 #Recomendation
+recentLow = min(dataFrame['Daily Low'].astype(float))
+recentClose = float(dataFrame.iloc[0]['Closing Price'])
 
+if ((recentClose / recentLow) - 1) < 0.2:
+	print("You should buy this stock!")
+else:
+	print("You should not buy this stock.")
+print("---------------------------------------------------------")
 
 
 
