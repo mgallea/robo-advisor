@@ -8,8 +8,8 @@ import datetime
 
 #Month Converter // from previous project
 def month_converter(monthCode):
-	full_month = {'01':'January','02':'February','03':'March','04':'April',
-	'05':'May','06':'June','07':'July','08':'August','09':'September','10':'October',
+	full_month = {'1':'January','2':'February','3':'March','4':'April',
+	'5':'May','6':'June','7':'July','8':'August','9':'September','10':'October',
 	'11':'November', '12':'December'}
 	return full_month[monthCode]
 
@@ -61,11 +61,13 @@ dataFrame = pandas.DataFrame({'Date':date,'Opening Price':openPrice, 'Daily High
 
 #Get the Date
 today = datetime.datetime.now()
-fullDate = today
 year = str(today.year)
 month = str(today.month)
 day = str(today.day)
 today = year + "-" + month + "-" + day + "__"
+
+monthFull = str(month)
+monthFull = month_converter(month)
 
 #Convert Data Frame to CSV
 dataFrame.to_csv(today + symbol + '.csv')
@@ -75,12 +77,21 @@ print("Your results have been saved successfully.")
 #Prepare Output Data
 latestDate = date[0]
 
+#Get the Month out of the Latest Date
+latestMonth = latestDate[5:7]
+latestMonth = int(float(latestMonth))
+latestMonth = month_converter(str(latestMonth))
+print(latestMonth)
+latestDay = latestDate[8:10]
+latestYear = latestDate[0:4]
+
+
 #Print Information
 print("")
 print("----------------------------------------------------")
 print("Stock Symbol: " + symbol )
-print("Analysis run at: " + str(fullDate))
-print("Latest Date of Available Data: " + latestDate)
+print("Analysis run on: " + monthFull + " " + day + ", " + year)
+print("Latest Date of Available Data: " + latestMonth + " " + latestDay + ", " + latestYear )
 print("The most recent Daily High price was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily High'])))
 print("The most recent Daily Low  price was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily Low'])))
 print("The most recent Opening  Price   was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Opening Price'])))
