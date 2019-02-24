@@ -3,6 +3,7 @@ import json
 import os
 import requests
 import pandas
+import datetime
 
 #Retrieve the API Key from the dotenv file
 load_dotenv()
@@ -48,10 +49,16 @@ for key, value in jsonData['Time Series (Daily)'].items():
 	vol.append(value['5. volume'])
 
 #Convert dictionaries to Data Frame
-df = pandas.DataFrame({'Date':date,'Opening Price':openPrice, 'Daily High': highPrice,'Daily Low': lowPrice,'Closing Price': closePrice,'Trading Volume': vol})
+dataFrame = pandas.DataFrame({'Date':date,'Opening Price':openPrice, 'Daily High': highPrice,'Daily Low': lowPrice,'Closing Price': closePrice,'Trading Volume': vol})
 
-print(df)
-print("")
+#Get the Date
+today = datetime.datetime.now()
+year = str(today.year)
+month = str(today.month)
+day = str(today.day)
+today = year + "-" + month + "-" + day
+print(today)
+
 latest_price_usd = "$100,000.00"
 print("-----------------")
 print(f"STOCK SYMBOL: {symbol}")
