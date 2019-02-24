@@ -19,32 +19,17 @@ while True:
 		print("Whoops! You need to enter a valid stock ticker. Please try again.")
 	else:
 		timeSeries=requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+symbol+'&apikey='+api_key)
+		print(timeSeries.text)
 		if "Error" in timeSeries.text:
 			print("Whoops! You need to enter a valid stock ticker. Please try again.")
 		else:
 			break
 
-#Access AlphaVantage API
+#Convert the output into JSON for easier access
+jsonData = timeSeries.json()
 
 
-
-# see: https://www.alphavantage.co/documentation/#daily (or a different endpoint, as desired)
-# TODO: assemble the request url to get daily data for the given stock symbol...
-
-# TODO: use the "requests" package to issue a "GET" request to the specified url, and store the JSON response in a variable...
-
-# TODO: further parse the JSON response...
-
-# TODO: traverse the nested response data structure to find the latest closing price and other values of interest...
 latest_price_usd = "$100,000.00"
-
-#
-# INFO OUTPUTS
-#
-
-# TODO: write response data to a CSV file
-
-# TODO: further revise the example outputs below to reflect real information
 print("-----------------")
 print(f"STOCK SYMBOL: {symbol}")
 print("RUN AT: 11:52pm on June 5th, 2018")
