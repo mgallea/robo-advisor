@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import json
 import os
 import requests
+import pandas
 
 #Retrieve the API Key from the dotenv file
 load_dotenv()
@@ -28,7 +29,29 @@ while True:
 #Convert the output into JSON for easier access
 jsonData = timeSeries.json()
 
+#Pull key information into dictionaries
 
+date = []
+openPrice = []
+highPrice = []
+lowPrice = []
+closePrice = []
+vol = []
+
+
+for key, value in jsonData['Time Series (Daily)'].items():
+	date.append(key)
+	openPrice.append(value['1. open'])
+	highPrice.append(value['2. high'])
+	lowPrice.append(value['3. low'])
+	closePrice.append(value['4. close'])
+	vol.append(value['5. volume'])
+
+#Convert dictionaries to Data Frame
+df = pandas.DataFrame({'Date':date,'Opening Price':openPrice, 'Daily High': highPrice,'Daily Low': lowPrice,'Closing Price': closePrice,'Trading Volume': vol})
+
+print(df)
+print("")
 latest_price_usd = "$100,000.00"
 print("-----------------")
 print(f"STOCK SYMBOL: {symbol}")
