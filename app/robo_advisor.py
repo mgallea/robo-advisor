@@ -12,7 +12,20 @@ print("")
 print("Welcome to the Robo Advisor Application")
 print("----------------------------------------------------")
 print("")
-symbol = input("Which stock would you like to retrieve quotes for? ")
+while True:
+	symbol = input("Which stock would you like to retrieve quotes for? ")
+
+	if not symbol.isalpha():
+		print("Whoops! You need to enter a valid stock ticker. Please try again.")
+	else:
+		timeSeries=requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+symbol+'&apikey='+api_key)
+		if "Error" in timeSeries.text:
+			print("Whoops! You need to enter a valid stock ticker. Please try again.")
+		else:
+			break
+
+#Access AlphaVantage API
+
 
 
 # see: https://www.alphavantage.co/documentation/#daily (or a different endpoint, as desired)
