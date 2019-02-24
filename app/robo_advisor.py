@@ -16,12 +16,12 @@ print("----------------------------------------------------")
 print("")
 while True:
 	symbol = input("Which stock would you like to retrieve quotes for? ")
+	symbol = symbol.upper()
 
 	if not symbol.isalpha():
 		print("Whoops! You need to enter a valid stock ticker. Please try again.")
 	else:
 		timeSeries=requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+symbol+'&apikey='+api_key)
-		print(timeSeries.text)
 		if "Error" in timeSeries.text:
 			print("Whoops! You need to enter a valid stock ticker. Please try again.")
 		else:
@@ -53,17 +53,48 @@ dataFrame = pandas.DataFrame({'Date':date,'Opening Price':openPrice, 'Daily High
 
 #Get the Date
 today = datetime.datetime.now()
-todayFull = today
+fullDate = today
 year = str(today.year)
 month = str(today.month)
 day = str(today.day)
 today = year + "-" + month + "-" + day + "__"
 
 #Convert Data Frame to CSV
-dataFrame.to_csv('~/data/' + today + symbol + '.csv')
+dataFrame.to_csv(today + symbol + '.csv')
 print("")
 print("Your results have been saved successfully.")
 
+#Prepare Output Data
+latestDate = date[0]
+highestPrice = highPrice[0]
+highestPrice = highestPrice[:-2]
+lowestPrice = lowPrice[0]
+lowestPrice = lowestPrice[:-2]
+closingPrice = closePrice[0]
+closingPrice = closingPrice[:-2]
+openingPrice = openPrice[0]
+openingPrice = openingPrice[:-2]
+
+#Print Information
+print("")
+print("----------------------------------------------------")
+print("Stock Symbol: " + symbol )
+print("Analysis run at: " + str(fullDate))
+print("Latest Date of Available Data: " + latestDate)
+print("The Daily High price on " + latestDate + " was:  $" + highestPrice)
+print("The Daily Low  price on " + latestDate + " was:  $" + lowestPrice)
+print("The opening  price   on " + latestDate + " was:  $" + openingPrice)
+print("The closing  price   on " + latestDate + " was:  $" + openingPrice)
+
+
+
+
+
+
+
+
+
+exit()
 latest_price_usd = "$100,000.00"
 print("-----------------")
 print(f"STOCK SYMBOL: {symbol}")
