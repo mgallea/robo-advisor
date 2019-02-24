@@ -53,11 +53,16 @@ dataFrame = pandas.DataFrame({'Date':date,'Opening Price':openPrice, 'Daily High
 
 #Get the Date
 today = datetime.datetime.now()
+todayFull = today
 year = str(today.year)
 month = str(today.month)
 day = str(today.day)
-today = year + "-" + month + "-" + day
-print(today)
+today = year + "-" + month + "-" + day + "__"
+
+#Convert Data Frame to CSV
+dataFrame.to_csv('~/data/' + today + symbol + '.csv')
+print("")
+print("Your results have been saved successfully.")
 
 latest_price_usd = "$100,000.00"
 print("-----------------")
