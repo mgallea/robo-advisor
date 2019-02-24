@@ -66,14 +66,6 @@ print("Your results have been saved successfully.")
 
 #Prepare Output Data
 latestDate = date[0]
-highestPrice = highPrice[0]
-highestPrice = highestPrice[:-2]
-lowestPrice = lowPrice[0]
-lowestPrice = lowestPrice[:-2]
-closingPrice = closePrice[0]
-closingPrice = closingPrice[:-2]
-openingPrice = openPrice[0]
-openingPrice = openingPrice[:-2]
 
 #Print Information
 print("")
@@ -81,10 +73,12 @@ print("----------------------------------------------------")
 print("Stock Symbol: " + symbol )
 print("Analysis run at: " + str(fullDate))
 print("Latest Date of Available Data: " + latestDate)
-print("The Daily High price on " + latestDate + " was:  $" + highestPrice)
-print("The Daily Low  price on " + latestDate + " was:  $" + lowestPrice)
-print("The opening  price   on " + latestDate + " was:  $" + openingPrice)
-print("The closing  price   on " + latestDate + " was:  $" + openingPrice)
+print("The Daily High price on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily High'])))
+print("The Daily Low  price on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Daily Low'])))
+print("The opening  price   on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Opening Price'])))
+print("The closing  price   on " + latestDate + " was:  " + "${0:,.2f}".format(float(dataFrame.iloc[0]['Closing Price'])))
+
+#Recomendation
 
 
 
@@ -93,18 +87,3 @@ print("The closing  price   on " + latestDate + " was:  $" + openingPrice)
 
 
 
-
-exit()
-latest_price_usd = "$100,000.00"
-print("-----------------")
-print(f"STOCK SYMBOL: {symbol}")
-print("RUN AT: 11:52pm on June 5th, 2018")
-print("-----------------")
-print("LATEST DAY OF AVAILABLE DATA: June 4th, 2018")
-print(f"LATEST DAILY CLOSING PRICE: {latest_price_usd}")
-print("RECENT HIGH: $101,000.00")
-print("RECENT LOW: $99,000.00")
-print("-----------------")
-print("RECOMMENDATION: Buy!")
-print("RECOMMENDATION REASON: Because the latest closing price is within threshold XYZ etc., etc. and this fits within your risk tolerance etc., etc.")
-print("-----------------")
