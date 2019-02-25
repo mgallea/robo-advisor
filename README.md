@@ -1,4 +1,4 @@
-# "Robo Advisor" Projectt
+# "Robo Advisor" Project
 
 A repository for the ["Robo Advisor" project](https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/projects/robo-advisor.md).
 
