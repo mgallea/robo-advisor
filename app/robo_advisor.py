@@ -70,7 +70,7 @@ monthFull = str(month)
 monthFull = month_converter(month)
 
 #Convert Data Frame to CSV
-dataFrame.to_csv(today + symbol + '.csv')
+dataFrame.to_csv("../data/" + today + symbol + '.csv')
 print("")
 print("Your results have been saved successfully.")
 
