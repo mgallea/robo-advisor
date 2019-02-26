@@ -12,7 +12,7 @@ Issues requests to the [AlphaVantage Stock Market API](https://www.alphavantage.
 
 ## Installation
 
-Fork this [starter project repository](https://github.com/prof-rossetti/stocks-app-starter-py) under your own control, then clone or download the resulting repository onto your computer. Then navigate there from the command line:
+Fork this repository under your own control, then clone or download the resulting repository onto your computer. Then navigate there from the command line:
 
 ```sh
 cd robo-advisor-starter-py
