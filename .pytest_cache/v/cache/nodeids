@@ -1,3 +1,4 @@
 [
-  "test/test_robo.py::test_to_usd"
+  "test/test_robo.py::test_to_usd",
+  "test/test_robo.py::test_conf_url"
 ]

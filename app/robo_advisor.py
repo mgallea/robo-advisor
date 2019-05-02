@@ -4,6 +4,7 @@ import os
 import requests
 import pandas
 import datetime
+from functions import *
 
 
 #Month Converter // from previous project
@@ -29,7 +30,7 @@ while True:
 	if not symbol.isalpha():
 		print("Whoops! You need to enter a valid stock ticker. Please try again.")
 	else:
-		timeSeries=requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+symbol+'&apikey='+api_key)
+		timeSeries= compile_url(symbol, api_key)
 		if "Error" in timeSeries.text:
 			print("Whoops! You need to enter a valid stock ticker. Please try again.")
 		else:
@@ -70,7 +71,7 @@ monthFull = str(month)
 monthFull = month_converter(month)
 
 #Convert Data Frame to CSV
-dataFrame.to_csv("../data/" + today + symbol + '.csv')
+dataFrame.to_csv("data/" + today + symbol + '.csv')
 print("")
 print("Your results have been saved successfully.")
 
