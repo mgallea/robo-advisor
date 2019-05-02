@@ -26,8 +26,7 @@ def test_conf_url():
 
 	symbol = "AAPL"
 	response = compile_url(symbol, api_key)
-	parsed_resp = json.loads(response.text)
-	assert parsed_resp["Meta Data"]["2. Symbol"] == symbol
-	if "Error" in parsed_resp:
+	assert response["Meta Data"]["2. Symbol"] == symbol
+	if "Error" in response:
 		assert 1 == "There is an error with the AlphaVantage API"
 

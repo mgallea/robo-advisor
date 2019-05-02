@@ -1,6 +1,7 @@
 import locale
 import dotenv
 import requests
+import json
 
 #Convert to USD Format
 def to_usd(value):
@@ -10,4 +11,5 @@ def to_usd(value):
 
 def compile_url(sym , apikey):
 	r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+sym+'&apikey='+apikey)
-	return r
+	p = json.loads(r.text)
+	return p

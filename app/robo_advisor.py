@@ -31,13 +31,10 @@ while True:
 		print("Whoops! You need to enter a valid stock ticker. Please try again.")
 	else:
 		timeSeries= compile_url(symbol, api_key)
-		if "Error" in timeSeries.text:
+		if "Error" in timeSeries:
 			print("Whoops! You need to enter a valid stock ticker. Please try again.")
 		else:
 			break
-
-#Convert the output into JSON for easier access
-jsonData = timeSeries.json()
 
 #Pull key information into dictionaries
 
@@ -49,7 +46,7 @@ closePrice = []
 vol = []
 
 
-for key, value in jsonData['Time Series (Daily)'].items():
+for key, value in timeSeries['Time Series (Daily)'].items():
 	date.append(key)
 	openPrice.append(value['1. open'])
 	highPrice.append(value['2. high'])
